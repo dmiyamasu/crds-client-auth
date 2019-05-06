@@ -75,7 +75,6 @@ export class CrdsOktaService {
         return from(this.oktaAuthClient.session.exists()).pipe(
             first(),
             switchMap(exists => {
-                console.log(exists);
                 if (exists) {
                     return from(
                         this.oktaAuthClient.token.getWithoutPrompt({

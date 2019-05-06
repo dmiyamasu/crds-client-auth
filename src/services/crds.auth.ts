@@ -44,6 +44,7 @@ export class CrdsAuthenticationService {
     }
 
     document.addEventListener(visibilityChange, () => {
+      console.log('visiblity has changed');
       this.authenticate();
     });
 
@@ -85,7 +86,6 @@ export class CrdsAuthenticationService {
     return this.providerServiceKVP[this.crdsAuthConfig.providerPreference[iterator]].authenticated().pipe(
       first(),
       switchMap(tokens => {
-        console.log(tokens);
         if (tokens != null) {
           return of(tokens);
         } else {
