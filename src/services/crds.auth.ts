@@ -44,8 +44,9 @@ export class CrdsAuthenticationService {
     }
 
     document.addEventListener(visibilityChange, () => {
-      console.log('visiblity has changed');
-      this.authenticate();
+      if (document.visibilityState === 'visible'){
+        this.authenticate().subscribe();
+      }
     });
 
     this.providerServiceKVP[AuthenticationProviders.Okta] = new CrdsOktaService(crdsAuthConfig.oktaConfig, this.logService);
