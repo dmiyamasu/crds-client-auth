@@ -16,7 +16,7 @@ export class CrdsMpService {
       return of(null);
   }
 
-  getCookie(cname) {
+  private getCookie(cname) {
     var name = cname + '=';
     var decodedCookie = decodeURIComponent(document.cookie);
     var ca = decodedCookie.split(';');

@@ -6,11 +6,11 @@ import { OktaTokens } from '../models/crds-token.okta';
 import { LoggerService } from './logger.service';
 
 export class CrdsOktaService {
-    
+
     private oktaAuthClient: OktaAuth;
 
     constructor(oktaConfig: OktaConfig, private log: LoggerService) {
-       this.oktaAuthClient = new OktaAuth(oktaConfig);
+        this.oktaAuthClient = new OktaAuth(oktaConfig);
     }
 
     public authenticated(): Observable<OktaTokens> {
