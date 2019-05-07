@@ -1,5 +1,5 @@
 {
-  "name": "crds-client-auth",
+  "name": "@crds_npm/crds-client-auth",
   "version": "1.0.1",
   "description": "Client side library for managing auth",
   "main": "build/main/index.js",
