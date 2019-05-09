@@ -3,7 +3,6 @@ import { AuthenticationProviders } from './crds-token.interface'
 export interface CRDSAuthConfig {
   oktaConfig: OktaConfig;
   mpConfig: MpConfig;
-  tokenInjectorDomains: string[];
   logging: boolean;
   providerPreference: AuthenticationProviders[];
 }
