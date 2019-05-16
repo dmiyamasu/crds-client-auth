@@ -1,5 +1,5 @@
 
-export class LoggerService {
+export class CrdsLoggerService {
   constructor(private on: boolean) {}
 
   public Error(header: string, detail?: any) {

@@ -1,13 +1,13 @@
-import { AuthenticationProviders } from './crds-token.interface'
+import { CrdsAuthenticationProviders } from './crds-token.interface'
 
-export interface CRDSAuthConfig {
-  oktaConfig: OktaConfig;
-  mpConfig: MpConfig;
+export interface CrdsAuthConfig {
+  oktaConfig: CrdsOktaConfig;
+  mpConfig: CrdsMpConfig;
   logging: boolean;
-  providerPreference: AuthenticationProviders[];
+  providerPreference: CrdsAuthenticationProviders[];
 }
 
-export interface OktaConfig {
+export interface CrdsOktaConfig {
   url: string;
   clientId: string;
   redirectUri: string;
@@ -20,7 +20,7 @@ export interface OktaConfig {
   },
 }
 
-export interface MpConfig {
+export interface CrdsMpConfig {
   accessTokenCookie: string;
   refreshTokenCookie: string;
 }

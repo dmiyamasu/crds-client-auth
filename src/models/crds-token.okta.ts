@@ -1,9 +1,9 @@
-import { ICRDSTokens, AuthenticationProviders } from "./crds-token.interface";
+import { CrdsTokens, CrdsAuthenticationProviders } from "./crds-token.interface";
 
-export class OktaTokens implements ICRDSTokens {
+export class CrdsOktaTokens implements CrdsTokens {
   public access_token: any;
   public id_token: any;
-  public provider = AuthenticationProviders.Okta;
+  public provider = CrdsAuthenticationProviders.Okta;
 
   constructor(accessToken: any = null, idToken: any = null) {
     if (accessToken != null) {
@@ -14,8 +14,8 @@ export class OktaTokens implements ICRDSTokens {
     }
   }
 
-  public static From(inc: Partial<ICRDSTokens>): OktaTokens {
+  public static From(inc: Partial<CrdsTokens>): CrdsOktaTokens {
     const { access_token, id_token } = inc;
-    return new OktaTokens(access_token, id_token);
+    return new CrdsOktaTokens(access_token, id_token);
   }
 }

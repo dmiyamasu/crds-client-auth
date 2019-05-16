@@ -1,18 +1,18 @@
 import { Observable, of } from "rxjs";
 
-import { MpTokens } from "../models/crds-token.mp";
+import { CrdsMpTokens } from "../models/crds-token.mp";
 import { Utilities } from "../utility/cookie";
 
 export class CrdsMpService {
   constructor(private accessTokenCookie: string, private refreshTokenCookie: string) { }
 
-  public authenticated(): Observable<MpTokens> {
+  public authenticated(): Observable<CrdsMpTokens> {
     // Just check for the presence of a cookie
     let accessToken = Utilities.getCookie(this.accessTokenCookie);
     let refreshToken = Utilities.getCookie(this.refreshTokenCookie);
 
     if (accessToken)
-      return of(MpTokens.From({ access_token: accessToken, refresh_token: refreshToken }));
+      return of(CrdsMpTokens.From({ access_token: accessToken, refresh_token: refreshToken }));
     else
       return of(null);
   }

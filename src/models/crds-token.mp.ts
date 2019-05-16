@@ -1,9 +1,9 @@
-import { ICRDSTokens, AuthenticationProviders } from "./crds-token.interface";
+import { CrdsTokens, CrdsAuthenticationProviders } from "./crds-token.interface";
 
-export class MpTokens implements ICRDSTokens {
+export class CrdsMpTokens implements CrdsTokens {
   public access_token: any;
   public refresh_token: string;
-  public provider = AuthenticationProviders.Mp;
+  public provider = CrdsAuthenticationProviders.Mp;
 
   constructor(accessToken: any = null, refreshToken: any = null) {
     if (accessToken != null) {
@@ -14,8 +14,8 @@ export class MpTokens implements ICRDSTokens {
     }
   }
 
-  public static From(inc: Partial<ICRDSTokens>): MpTokens {
+  public static From(inc: Partial<CrdsTokens>): CrdsMpTokens {
     const { access_token, refresh_token } = inc;
-    return new MpTokens(access_token, refresh_token);
+    return new CrdsMpTokens(access_token, refresh_token);
   }
 }

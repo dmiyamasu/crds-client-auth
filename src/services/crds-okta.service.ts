@@ -1,19 +1,19 @@
 import { Observable, of, from, forkJoin } from 'rxjs';
 import { switchMap, first, map, catchError, tap } from 'rxjs/operators';
 import * as OktaAuth from '@okta/okta-auth-js';
-import { OktaConfig } from '../models/crds-auth-config.model';
-import { OktaTokens } from '../models/crds-token.okta';
-import { LoggerService } from './logger.service';
+import { CrdsOktaConfig } from '../models/crds-auth-config.model';
+import { CrdsOktaTokens } from '../models/crds-token.okta';
+import { CrdsLoggerService } from './crds-logger.service';
 
 export class CrdsOktaService {
 
     private oktaAuthClient: OktaAuth;
 
-    constructor(oktaConfig: OktaConfig, private log: LoggerService) {
+    constructor(oktaConfig: CrdsOktaConfig, private log: CrdsLoggerService) {
         this.oktaAuthClient = new OktaAuth(oktaConfig);
     }
 
-    public authenticated(): Observable<OktaTokens> {
+    public authenticated(): Observable<CrdsOktaTokens> {
         return this.getTokenDictionary().pipe(
             switchMap(tokens => {
                 if (!!tokens) {
@@ -52,14 +52,14 @@ export class CrdsOktaService {
         this.oktaAuthClient.tokenManager.on('error', callback);
     }
 
-    private getTokenDictionary(): Observable<OktaTokens> {
+    private getTokenDictionary(): Observable<CrdsOktaTokens> {
         const idToken = from(this.oktaAuthClient.tokenManager.get('access_token'));
         const accessToken$ = from(this.oktaAuthClient.tokenManager.get('id_token'));
         return forkJoin([idToken, accessToken$]).pipe(
             first(),
             map(([id, access]) => {
                 if (!!id && !!access) {
-                    return OktaTokens.From({ id_token: id, access_token: access });
+                    return CrdsOktaTokens.From({ id_token: id, access_token: access });
                 } else {
                     return null;
                 }
@@ -88,7 +88,7 @@ export class CrdsOktaService {
                             this.oktaAuthClient.tokenManager.add('access_token', tokens[1]);
                         }),
                         map(tokens => {
-                            return OktaTokens.From({ id_token: tokens[0], access_token: tokens[1] });
+                            return CrdsOktaTokens.From({ id_token: tokens[0], access_token: tokens[1] });
                         }),
                         catchError(err => {
                             this.log.Error('AUTHENTICATION SERICE: okta get without prompt function returned error', err);

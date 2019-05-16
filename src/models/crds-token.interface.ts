@@ -1,11 +1,11 @@
-export enum AuthenticationProviders {
+export enum CrdsAuthenticationProviders {
   Mp = 1,
   Okta
 }
 
-export interface ICRDSTokens {
+export interface CrdsTokens {
   access_token: any;
   id_token?: any;
   refresh_token?: string;
-  provider: AuthenticationProviders;
+  provider: CrdsAuthenticationProviders;
 }
