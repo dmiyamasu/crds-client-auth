@@ -4,4 +4,4 @@
 export { CrdsAuthenticationService } from './services/crds-auth.service';
 export { CrdsAuthConfig, CrdsOktaConfig, CrdsMpConfig } from './models/crds-auth-config.model';
 export { CrdsTokens, CrdsAuthenticationProviders } from './models/crds-token.interface';
-export { LoggerService } from './services/crds-logger.service';
+export { CrdsLoggerService } from './services/crds-logger.service';
