@@ -10,9 +10,11 @@ export class CrdsAuthenticationService {
   providerServiceKVP: { [key: string]: any } = {};
 
   private authenticationStatus$: BehaviorSubject<CrdsTokens | null>;
+  private logService: CrdsLoggerService;
 
-  constructor(private crdsAuthConfig: CrdsAuthConfig, private logService: CrdsLoggerService) {
+  constructor(private crdsAuthConfig: CrdsAuthConfig) {
     this.authenticationStatus$ = new BehaviorSubject<CrdsTokens | null>(null);
+    this.logService = new CrdsLoggerService(crdsAuthConfig.logging);
 
     let oktaService = new CrdsOktaService(this.crdsAuthConfig.oktaConfig, this.logService);
 
