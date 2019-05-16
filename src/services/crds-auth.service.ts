@@ -4,14 +4,14 @@ import { CrdsAuthConfig } from '../models/crds-auth-config.model';
 import { CrdsOktaService } from './crds-okta.service';
 import { CrdsMpService } from './crds-mp.service';
 import { first, switchMap, tap, map } from 'rxjs/operators';
-import { LoggerService } from './crds-logger.service';
+import { CrdsLoggerService } from './crds-logger.service';
 
 export class CrdsAuthenticationService {
   providerServiceKVP: { [key: string]: any } = {};
 
   private authenticationStatus$: BehaviorSubject<CrdsTokens | null>;
 
-  constructor(private crdsAuthConfig: CrdsAuthConfig, private logService: LoggerService) {
+  constructor(private crdsAuthConfig: CrdsAuthConfig, private logService: CrdsLoggerService) {
     this.authenticationStatus$ = new BehaviorSubject<CrdsTokens | null>(null);
 
     let oktaService = new CrdsOktaService(this.crdsAuthConfig.oktaConfig, this.logService);
