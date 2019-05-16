@@ -64,135 +64,151 @@
 	<div class="row">
 		<div class="col-8 col-content">
 			<div class="tsd-panel tsd-typography">
-				<h1 id="crds-client-auth">crds-client-auth</h1>
-				<p>Client side library for managing auth</p>
-				<h1 id="crossroads-okta-angular-library">Crossroads Okta Angular Library</h1>
-				<p>Crds-okta-auth will enable your product to:</p>
+				<h1 id="crossroads-auth-typescript-library">Crossroads Auth Typescript Library</h1>
+				<p>crds-client-auth will enable your product to:</p>
 				<ul>
-					<li>authenticate through okta</li>
 					<li>check authentication status</li>
-					<li>protect routes</li>
-					<li>append access tokens to requests to predefined origins</li>
+					<li>get updates on authentication status changes</li>
 				</ul>
 				<h2 id="installing">Installing</h2>
 				<h3 id="install-via-npm-with">Install via NPM with</h3>
-				<pre><code class="language-bash">npm install --save @crds_npm/crds-okta-auth</code></pre>
-				<h3 id="build-the-config-json-and-add-crds-okta-auth-module-as-a-dependency">Build the config json and add crds-okta-auth module as a dependency</h3>
+				<pre><code class="language-bash">npm install --save @crds_npm/crds-client-auth</code></pre>
+				<h3 id="build-the-config-json-and-create-instance-of-auth-service">Build the config json and create instance of auth service</h3>
 				<pre><code class="language-typescript"><span class="hljs-keyword">import</span> {
-  CrdsOktaAuthModule,
-  CRDSOktaConfig,
-  AuthenticatedGuard,
-  CRDSTokenInjectorInterceptor
-} <span class="hljs-keyword">from</span> <span class="hljs-string">'@crds_npm/crds-okta-auth'</span>;
+CrdsAuthenticationService, 
+CrdsLoggerService, 
+CrdsAuthConfig, 
+CrdsOktaConfig, 
+CrdsMpConfig, 
+CrdsAuthenticationProviders } <span class="hljs-keyword">from</span>  <span class="hljs-string">'@crds_npm/crds-client-auth'</span>;
 
-<span class="hljs-keyword">const</span> authConfig: CRDSOktaConfig = {
-  oktaBase: {
-    url: <span class="hljs-string">'INSERT URL'</span>,
-    clientId: <span class="hljs-string">'INSERT CLIENT ID'</span>,
-    redirectUri: <span class="hljs-string">'URL TO REDIRECT TO AFTER AUTHENTICATION'</span>,
-    idps: [{ <span class="hljs-keyword">type</span>: <span class="hljs-string">'FACEBOOK'</span>, id: <span class="hljs-string">'FACEBOOK IDP ID'</span> }, { <span class="hljs-keyword">type</span>: <span class="hljs-string">'GOOGLE'</span>, id: <span class="hljs-string">'GOOGLE IDP ID'</span> }]
-  },
-  tokenInjectorDomains: [<span class="hljs-string">'ARRAY OF DOMAINS TO APPEND TOKEN INTO HEADER ON REQUESTS'</span>],
-  logging: <span class="hljs-literal">true</span>
-};
+<span class="hljs-keyword">let</span>  oktaConfig:  CrdsOktaConfig  = {
+    url:  <span class="hljs-string">'OKTA_URL'</span>,
+    clientId:  <span class="hljs-string">'CLIENT_ID'</span>,
+    redirectUri:  <span class="hljs-string">'REDIRECT_URI'</span>,
+    idps: [
+        { <span class="hljs-keyword">type</span>:  <span class="hljs-string">'FACEBOOK'</span>, id:  <span class="hljs-string">'FACEBOOK_ID'</span> },
+        { <span class="hljs-keyword">type</span>:  <span class="hljs-string">'GOOGLE'</span>, id:  <span class="hljs-string">'GOOGLE_ID'</span> }
+    ],
+    issuer:  <span class="hljs-string">'default'</span>,
+    tokenManager: {
+        storage:  <span class="hljs-string">'cookie'</span>
+    },
+}
 
-<span class="hljs-meta">@NgModule</span>({
-  declarations: [
-    ...
-  ],
-  imports: [
-    ...
-    CrdsOktaAuthModule.forRoot(authConfig)
-    ...
-  ],
-  providers: [
-    ...
-    { provide: HTTP_INTERCEPTORS, useClass: CRDSTokenInjectorInterceptor, multi: <span class="hljs-literal">true</span> }
-    ...
+<span class="hljs-keyword">let</span>  mpConfig:  CrdsMpConfig  = {
+    accessTokenCookie:  <span class="hljs-string">'ACCESS_TOKEN_COOKIE_NAME'</span>,
+    refreshTokenCookie:  <span class="hljs-string">'REFRESH_TOKEN_COOKIE_NAME'</span>,
+}
+
+<span class="hljs-keyword">let</span>  authConfig:  CrdsAuthConfig  = {
+    oktaConfig:  oktaConfig,
+    mpConfig:  mpConfig,
+    logging: <span class="hljs-literal">false</span>, <span class="hljs-comment">//Do you want to log debug info to the web console?</span>
+    providerPreference: [
+        <span class="hljs-comment">// Put these in the order you want the library to check for auth status</span>
+        CrdsAuthenticationProviders.Okta,
+        CrdsAuthenticationProviders.Mp
     ]
+}
+
+<span class="hljs-keyword">let</span> authService = <span class="hljs-keyword">new</span> CrdsAuthenticationService(authConfig);
+
+authService.authenticated().subscribe(<span class="hljs-function"><span class="hljs-params">tokens</span>  =&gt;</span> {
+    <span class="hljs-keyword">if</span> (tokens) {
+        <span class="hljs-built_in">console</span>.log(<span class="hljs-string">'logged in'</span>);
+    }
+    <span class="hljs-keyword">else</span> {
+        <span class="hljs-built_in">console</span>.log(<span class="hljs-string">'not logged in'</span>);
+    }
 })</code></pre>
 				<h2 id="api">API</h2>
-				<hr>
-				<h3 id="table-of-contents">Table of Contents</h3>
-				<table>
-					<thead>
-						<tr>
-							<th>Modules</th>
-							<th>Services</th>
-							<th>Interceptors</th>
-							<th>Guards</th>
-							<th>Directives</th>
-							<th>Classes</th>
-						</tr>
-					</thead>
-					<tbody><tr>
-							<td><a href="#CrdsOktaAuthModule">CrdsOktaAuthModule</a></td>
-							<td><a href="#CrdsAuthenticationService">CrdsAuthenticationService</a></td>
-							<td><a href="#CrdsTokenInjectorInterceptor">CrdsTokenInjectorInterceptor</a></td>
-							<td><a href="#AuthenticatedGuard">AuthenticatedGuard</a></td>
-							<td><a href="#CRDSSignInWidgetDirective">CRDSSignInWidgetDirective</a></td>
-							<td><a href="#CRDSOktaConfig">CRDSOktaConfig</a></td>
-						</tr>
-						<tr>
-							<td>&nbsp;</td>
-							<td><a href="#CrdsSigninService">CrdsSigninService</a></td>
-							<td>&nbsp;</td>
-							<td><a href="#CanLoginGuard">CanLoginGuard</a></td>
-							<td>&nbsp;</td>
-							<td><a href="#CRDSTokens">CRDSTokens\ICRDSTokens</a></td>
-						</tr>
-				</tbody></table>
 				<h3 id="documentation">Documentation</h3>
-				<hr>
-				<h4 id="crdsoktaauthmodule"><strong><em><code>CrdsOktaAuthModule</code></em></strong></h4>
-				<hr>
-				<blockquote>
-					<p>Base angular module for providing CRDS-OKTA-AUTH for your application.</p>
-				</blockquote>
-				<p><strong><code>function</code>: forRoot(config: CRDSOktaConfig): ModuleWithProviders</strong></p>
-				<blockquote>
-					<p>Requires an instance of <a href="#CRDSOktaConfig"><code>CRDSOktaConfig</code></a> to instantiate.  Provided in the <code>import</code> section of your Core Module.</p>
-				</blockquote>
-				<pre><code class="language-typescript"><span class="hljs-keyword">import</span> { CrdsOktaAuthModule, CRDSOktaConfig} <span class="hljs-keyword">from</span> <span class="hljs-string">'@crds_npm/crds-okta-auth'</span>;
-
-<span class="hljs-keyword">const</span> authConfig: CRDSOktaConfig = {...};
-
-<span class="hljs-meta">@NgModule</span>({
-  declarations: [...],
-  imports: [CrdsOktaAuthModule.forRoot(authConfig)
-    ...
-  ],
-  providers: [...]
-})</code></pre>
 				<hr>
 				<h4 id="crdsauthenticationservice"><strong><em><code>CrdsAuthenticationService</code></em></strong></h4>
 				<hr>
 				<blockquote>
-					<p>Basic service used to interact with Okta Auth Status</p>
+					<p>Basic service used to interact with Auth Status</p>
 				</blockquote>
-				<p><strong><code>function</code>: authenticated(): Observable<<a href="#CRDSTokens">CRDSTokens</a>></strong></p>
+				<p><strong><code>function</code>: authenticated(): Observable<<a href="#CrdsTokens">CrdsTokens</a>></strong></p>
 				<blockquote>
-					<p>Returns an observable that contains either the tokens for the user (if logged in), or null if not logged in.  This function will check the (local) token manager first to see if there is a session, and if there is no local session, it will check the server for an active session, and set it in the (local) token manager if one exists. </p>
+					<p>Returns an observable that contains either the tokens for the user (if logged in), or null if not logged in. This function will check the (local) token manager first to see if there is a session, and if there is no local session, it will check the server for an active session, and set it in the (local) token manager if one exists.</p>
 				</blockquote>
-				<pre><code class="language-typescript">  authenticated().subscribe(<span class="hljs-function">(<span class="hljs-params">tokens: CRDSTokens</span>) =&gt;</span> {
+				<pre><code class="language-typescript">authenticated().subscribe(<span class="hljs-function">(<span class="hljs-params">tokens: CrdsTokens</span>) =&gt;</span> {
     <span class="hljs-keyword">if</span> (tokens != <span class="hljs-literal">null</span>) {
-      <span class="hljs-built_in">console</span>.log(<span class="hljs-string">'user logged in'</span>, tokens);
+        <span class="hljs-built_in">console</span>.log(<span class="hljs-string">'user logged in'</span>, tokens);
     } <span class="hljs-keyword">else</span> {
-      <span class="hljs-built_in">console</span>.log(<span class="hljs-string">'user is NOT logged in'</span>);
+        <span class="hljs-built_in">console</span>.log(<span class="hljs-string">'user is NOT logged in'</span>);
     }
-  }</code></pre>
+}</code></pre>
 				<p><strong><code>function</code>: signOut(): Observable<boolean></strong></p>
 				<blockquote>
 					<p>Returns an observable that contains whether the signout action was successful or not.</p>
 				</blockquote>
-				<pre><code class="language-typescript">    signOut().subscribe(<span class="hljs-function"><span class="hljs-params">success</span> =&gt;</span> {
-      <span class="hljs-keyword">if</span> (success) {
+				<pre><code class="language-typescript">signOut().subscribe(<span class="hljs-function"><span class="hljs-params">success</span>  =&gt;</span> {
+    <span class="hljs-keyword">if</span> (success) {
         <span class="hljs-built_in">console</span>.log(<span class="hljs-string">'log out worked'</span>)
-      } <span class="hljs-keyword">else</span> {
+    } <span class="hljs-keyword">else</span> {
         <span class="hljs-built_in">console</span>.log(<span class="hljs-string">'log out failed'</span>)
-      }
-    });</code></pre>
+    }
+});</code></pre>
 				<hr>
+				<h4 id="crdstokens"><strong><em><code>CrdsTokens</code></em></strong></h4>
+				<hr>
+				<blockquote>
+					<p>Interface and class for containing tokens.</p>
+				</blockquote>
+				<pre><code class="language-typescript">{
+    access_token:  <span class="hljs-built_in">any</span>; <span class="hljs-comment">// Both will have an access token</span>
+    id_token?:  <span class="hljs-built_in">any</span>; <span class="hljs-comment">// Optional as only Okta auth has id_token</span>
+    refresh_token?:  <span class="hljs-built_in">string</span>; <span class="hljs-comment">// Optional as only Mp auth has refresh token</span>
+    provider:  CrdsAuthenticationProviders; <span class="hljs-comment">// Mp or Okta enum</span>
+}</code></pre>
+				<h3 id="building">Building</h3>
+				<blockquote>
+					<ul>
+						<li><code>npm i</code></li>
+					</ul>
+				</blockquote>
+				<blockquote>
+					<ul>
+						<li><code>npm run build</code> - this will run a build and will watch to rebuild when changes happen  </li>
+					</ul>
+				</blockquote>
+				<h3 id="running-the-tests">Running the tests</h3>
+				<blockquote>
+					<ul>
+						<li><code>npm run test</code></li>
+					</ul>
+				</blockquote>
+				<h3 id="deployment">Deployment</h3>
+				<blockquote>
+					<p>CI/CD is set up through TeamCity
+						Pull requests against the master branch will be built and tested automatically.
+						Merges into master will be built and published to npm.
+					To deploy to npm:</p>
+				</blockquote>
+				<h3 id="run-locally">Run Locally</h3>
+				<blockquote>
+					<ul>
+						<li><a href="https://docs.npmjs.com/cli/link.html">checkout <code>npm link</code></a></li>
+					</ul>
+				</blockquote>
+				<blockquote>
+					<ul>
+						<li>run <code>npm link</code></li>
+					</ul>
+				</blockquote>
+				<blockquote>
+					<ul>
+						<li>in the local project consuming the this library, run <code>npm link @crds_npm/crds-client-auth</code></li>
+					</ul>
+				</blockquote>
+				<blockquote>
+					<ul>
+						<li>this creates a symlink to the dist of the local library</li>
+					</ul>
+				</blockquote>
 			</div>
 		</div>
 		<div class="col-4 col-menu menu-sticky-wrap menu-highlight">
