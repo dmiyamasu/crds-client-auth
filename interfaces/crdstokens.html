@@ -3,7 +3,7 @@
 <head>
 	<meta charset="utf-8">
 	<meta http-equiv="X-UA-Compatible" content="IE=edge">
-	<title>MpConfig | @crds_npm/crds-client-auth</title>
+	<title>CrdsTokens | @crds_npm/crds-client-auth</title>
 	<meta name="description" content="">
 	<meta name="viewport" content="width=device-width, initial-scale=1">
 	<link rel="stylesheet" href="../assets/css/main.css">
@@ -56,10 +56,10 @@
 					<a href="../globals.html">Globals</a>
 				</li>
 				<li>
-					<a href="mpconfig.html">MpConfig</a>
+					<a href="crdstokens.html">CrdsTokens</a>
 				</li>
 			</ul>
-			<h1>Interface MpConfig</h1>
+			<h1>Interface CrdsTokens</h1>
 		</div>
 	</div>
 </header>
@@ -70,8 +70,15 @@
 				<h3>Hierarchy</h3>
 				<ul class="tsd-hierarchy">
 					<li>
-						<span class="target">MpConfig</span>
+						<span class="target">CrdsTokens</span>
 					</li>
+				</ul>
+			</section>
+			<section class="tsd-panel">
+				<h3>Implemented by</h3>
+				<ul class="tsd-hierarchy">
+					<li><a href="../classes/crdsmptokens.html" class="tsd-signature-type">CrdsMpTokens</a></li>
+					<li><a href="../classes/crdsoktatokens.html" class="tsd-signature-type">CrdsOktaTokens</a></li>
 				</ul>
 			</section>
 			<section class="tsd-panel-group tsd-index-group">
@@ -81,8 +88,10 @@
 						<section class="tsd-index-section ">
 							<h3>Properties</h3>
 							<ul class="tsd-index-list">
-								<li class="tsd-kind-property tsd-parent-kind-interface"><a href="mpconfig.html#accesstokencookie" class="tsd-kind-icon">access<wbr>Token<wbr>Cookie</a></li>
-								<li class="tsd-kind-property tsd-parent-kind-interface"><a href="mpconfig.html#refreshtokencookie" class="tsd-kind-icon">refresh<wbr>Token<wbr>Cookie</a></li>
+								<li class="tsd-kind-property tsd-parent-kind-interface"><a href="crdstokens.html#access_token" class="tsd-kind-icon">access_<wbr>token</a></li>
+								<li class="tsd-kind-property tsd-parent-kind-interface"><a href="crdstokens.html#id_token" class="tsd-kind-icon">id_<wbr>token</a></li>
+								<li class="tsd-kind-property tsd-parent-kind-interface"><a href="crdstokens.html#provider" class="tsd-kind-icon">provider</a></li>
+								<li class="tsd-kind-property tsd-parent-kind-interface"><a href="crdstokens.html#refresh_token" class="tsd-kind-icon">refresh_<wbr>token</a></li>
 							</ul>
 						</section>
 					</div>
@@ -91,22 +100,42 @@
 			<section class="tsd-panel-group tsd-member-group ">
 				<h2>Properties</h2>
 				<section class="tsd-panel tsd-member tsd-kind-property tsd-parent-kind-interface">
-					<a name="accesstokencookie" class="tsd-anchor"></a>
-					<h3>access<wbr>Token<wbr>Cookie</h3>
-					<div class="tsd-signature tsd-kind-icon">access<wbr>Token<wbr>Cookie<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">string</span></div>
+					<a name="access_token" class="tsd-anchor"></a>
+					<h3>access_<wbr>token</h3>
+					<div class="tsd-signature tsd-kind-icon">access_<wbr>token<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">any</span></div>
 					<aside class="tsd-sources">
 						<ul>
-							<li>Defined in <a href="https://github.com/crdschurch/crds-client-auth/blob/45a52d0/src/models/crds-auth-config.model.ts#L24">models/crds-auth-config.model.ts:24</a></li>
+							<li>Defined in <a href="https://github.com/crdschurch/crds-client-auth/blob/22ff5cb/src/models/crds-token.interface.ts#L7">models/crds-token.interface.ts:7</a></li>
 						</ul>
 					</aside>
 				</section>
 				<section class="tsd-panel tsd-member tsd-kind-property tsd-parent-kind-interface">
-					<a name="refreshtokencookie" class="tsd-anchor"></a>
-					<h3>refresh<wbr>Token<wbr>Cookie</h3>
-					<div class="tsd-signature tsd-kind-icon">refresh<wbr>Token<wbr>Cookie<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">string</span></div>
+					<a name="id_token" class="tsd-anchor"></a>
+					<h3><span class="tsd-flag ts-flagOptional">Optional</span> id_<wbr>token</h3>
+					<div class="tsd-signature tsd-kind-icon">id_<wbr>token<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">any</span></div>
 					<aside class="tsd-sources">
 						<ul>
-							<li>Defined in <a href="https://github.com/crdschurch/crds-client-auth/blob/45a52d0/src/models/crds-auth-config.model.ts#L25">models/crds-auth-config.model.ts:25</a></li>
+							<li>Defined in <a href="https://github.com/crdschurch/crds-client-auth/blob/22ff5cb/src/models/crds-token.interface.ts#L8">models/crds-token.interface.ts:8</a></li>
+						</ul>
+					</aside>
+				</section>
+				<section class="tsd-panel tsd-member tsd-kind-property tsd-parent-kind-interface">
+					<a name="provider" class="tsd-anchor"></a>
+					<h3>provider</h3>
+					<div class="tsd-signature tsd-kind-icon">provider<span class="tsd-signature-symbol">:</span> <a href="../enums/crdsauthenticationproviders.html" class="tsd-signature-type">CrdsAuthenticationProviders</a></div>
+					<aside class="tsd-sources">
+						<ul>
+							<li>Defined in <a href="https://github.com/crdschurch/crds-client-auth/blob/22ff5cb/src/models/crds-token.interface.ts#L10">models/crds-token.interface.ts:10</a></li>
+						</ul>
+					</aside>
+				</section>
+				<section class="tsd-panel tsd-member tsd-kind-property tsd-parent-kind-interface">
+					<a name="refresh_token" class="tsd-anchor"></a>
+					<h3><span class="tsd-flag ts-flagOptional">Optional</span> refresh_<wbr>token</h3>
+					<div class="tsd-signature tsd-kind-icon">refresh_<wbr>token<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">string</span></div>
+					<aside class="tsd-sources">
+						<ul>
+							<li>Defined in <a href="https://github.com/crdschurch/crds-client-auth/blob/22ff5cb/src/models/crds-token.interface.ts#L9">models/crds-token.interface.ts:9</a></li>
 						</ul>
 					</aside>
 				</section>
@@ -123,50 +152,56 @@
 			<nav class="tsd-navigation secondary menu-sticky">
 				<ul class="before-current">
 					<li class=" tsd-kind-enum">
-						<a href="../enums/authenticationproviders.html" class="tsd-kind-icon">Authentication<wbr>Providers</a>
+						<a href="../enums/crdsauthenticationproviders.html" class="tsd-kind-icon">Crds<wbr>Authentication<wbr>Providers</a>
 					</li>
 					<li class=" tsd-kind-class">
 						<a href="../classes/crdsauthenticationservice.html" class="tsd-kind-icon">Crds<wbr>Authentication<wbr>Service</a>
 					</li>
 					<li class=" tsd-kind-class">
+						<a href="../classes/crdsloggerservice.html" class="tsd-kind-icon">Crds<wbr>Logger<wbr>Service</a>
+					</li>
+					<li class=" tsd-kind-class">
 						<a href="../classes/crdsmpservice.html" class="tsd-kind-icon">Crds<wbr>MpService</a>
+					</li>
+					<li class=" tsd-kind-class">
+						<a href="../classes/crdsmptokens.html" class="tsd-kind-icon">Crds<wbr>MpTokens</a>
 					</li>
 					<li class=" tsd-kind-class">
 						<a href="../classes/crdsoktaservice.html" class="tsd-kind-icon">Crds<wbr>Okta<wbr>Service</a>
 					</li>
 					<li class=" tsd-kind-class">
-						<a href="../classes/loggerservice.html" class="tsd-kind-icon">Logger<wbr>Service</a>
-					</li>
-					<li class=" tsd-kind-class">
-						<a href="../classes/mptokens.html" class="tsd-kind-icon">Mp<wbr>Tokens</a>
-					</li>
-					<li class=" tsd-kind-class">
-						<a href="../classes/oktatokens.html" class="tsd-kind-icon">Okta<wbr>Tokens</a>
+						<a href="../classes/crdsoktatokens.html" class="tsd-kind-icon">Crds<wbr>Okta<wbr>Tokens</a>
 					</li>
 					<li class=" tsd-kind-interface">
-						<a href="crdsauthconfig.html" class="tsd-kind-icon">CRDSAuth<wbr>Config</a>
+						<a href="crdsauthconfig.html" class="tsd-kind-icon">Crds<wbr>Auth<wbr>Config</a>
 					</li>
 					<li class=" tsd-kind-interface">
-						<a href="icrdstokens.html" class="tsd-kind-icon">ICRDSTokens</a>
+						<a href="crdsmpconfig.html" class="tsd-kind-icon">Crds<wbr>MpConfig</a>
+					</li>
+					<li class=" tsd-kind-interface">
+						<a href="crdsoktaconfig.html" class="tsd-kind-icon">Crds<wbr>Okta<wbr>Config</a>
 					</li>
 				</ul>
 				<ul class="current">
 					<li class="current tsd-kind-interface">
-						<a href="mpconfig.html" class="tsd-kind-icon">Mp<wbr>Config</a>
+						<a href="crdstokens.html" class="tsd-kind-icon">Crds<wbr>Tokens</a>
 						<ul>
 							<li class=" tsd-kind-property tsd-parent-kind-interface">
-								<a href="mpconfig.html#accesstokencookie" class="tsd-kind-icon">access<wbr>Token<wbr>Cookie</a>
+								<a href="crdstokens.html#access_token" class="tsd-kind-icon">access_<wbr>token</a>
 							</li>
 							<li class=" tsd-kind-property tsd-parent-kind-interface">
-								<a href="mpconfig.html#refreshtokencookie" class="tsd-kind-icon">refresh<wbr>Token<wbr>Cookie</a>
+								<a href="crdstokens.html#id_token" class="tsd-kind-icon">id_<wbr>token</a>
+							</li>
+							<li class=" tsd-kind-property tsd-parent-kind-interface">
+								<a href="crdstokens.html#provider" class="tsd-kind-icon">provider</a>
+							</li>
+							<li class=" tsd-kind-property tsd-parent-kind-interface">
+								<a href="crdstokens.html#refresh_token" class="tsd-kind-icon">refresh_<wbr>token</a>
 							</li>
 						</ul>
 					</li>
 				</ul>
 				<ul class="after-current">
-					<li class=" tsd-kind-interface">
-						<a href="oktaconfig.html" class="tsd-kind-icon">Okta<wbr>Config</a>
-					</li>
 				</ul>
 			</nav>
 		</div>

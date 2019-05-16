@@ -3,7 +3,7 @@
 <head>
 	<meta charset="utf-8">
 	<meta http-equiv="X-UA-Compatible" content="IE=edge">
-	<title>OktaTokens | @crds_npm/crds-client-auth</title>
+	<title>CrdsLoggerService | @crds_npm/crds-client-auth</title>
 	<meta name="description" content="">
 	<meta name="viewport" content="width=device-width, initial-scale=1">
 	<link rel="stylesheet" href="../assets/css/main.css">
@@ -56,10 +56,10 @@
 					<a href="../globals.html">Globals</a>
 				</li>
 				<li>
-					<a href="oktatokens.html">OktaTokens</a>
+					<a href="crdsloggerservice.html">CrdsLoggerService</a>
 				</li>
 			</ul>
-			<h1>Class OktaTokens</h1>
+			<h1>Class CrdsLoggerService</h1>
 		</div>
 	</div>
 </header>
@@ -70,14 +70,8 @@
 				<h3>Hierarchy</h3>
 				<ul class="tsd-hierarchy">
 					<li>
-						<span class="target">OktaTokens</span>
+						<span class="target">CrdsLoggerService</span>
 					</li>
-				</ul>
-			</section>
-			<section class="tsd-panel">
-				<h3>Implements</h3>
-				<ul class="tsd-hierarchy">
-					<li><a href="../interfaces/icrdstokens.html" class="tsd-signature-type">ICRDSTokens</a></li>
 				</ul>
 			</section>
 			<section class="tsd-panel-group tsd-index-group">
@@ -87,21 +81,22 @@
 						<section class="tsd-index-section ">
 							<h3>Constructors</h3>
 							<ul class="tsd-index-list">
-								<li class="tsd-kind-constructor tsd-parent-kind-class"><a href="oktatokens.html#constructor" class="tsd-kind-icon">constructor</a></li>
+								<li class="tsd-kind-constructor tsd-parent-kind-class"><a href="crdsloggerservice.html#constructor" class="tsd-kind-icon">constructor</a></li>
 							</ul>
 						</section>
-						<section class="tsd-index-section ">
+						<section class="tsd-index-section tsd-is-private tsd-is-private-protected">
 							<h3>Properties</h3>
 							<ul class="tsd-index-list">
-								<li class="tsd-kind-property tsd-parent-kind-class"><a href="oktatokens.html#access_token" class="tsd-kind-icon">access_<wbr>token</a></li>
-								<li class="tsd-kind-property tsd-parent-kind-class"><a href="oktatokens.html#id_token" class="tsd-kind-icon">id_<wbr>token</a></li>
-								<li class="tsd-kind-property tsd-parent-kind-class"><a href="oktatokens.html#provider" class="tsd-kind-icon">provider</a></li>
+								<li class="tsd-kind-property tsd-parent-kind-class tsd-is-private"><a href="crdsloggerservice.html#on" class="tsd-kind-icon">on</a></li>
 							</ul>
 						</section>
 						<section class="tsd-index-section ">
 							<h3>Methods</h3>
 							<ul class="tsd-index-list">
-								<li class="tsd-kind-method tsd-parent-kind-class tsd-is-static"><a href="oktatokens.html#from" class="tsd-kind-icon">From</a></li>
+								<li class="tsd-kind-method tsd-parent-kind-class"><a href="crdsloggerservice.html#error" class="tsd-kind-icon">Error</a></li>
+								<li class="tsd-kind-method tsd-parent-kind-class"><a href="crdsloggerservice.html#info" class="tsd-kind-icon">Info</a></li>
+								<li class="tsd-kind-method tsd-parent-kind-class"><a href="crdsloggerservice.html#log" class="tsd-kind-icon">Log</a></li>
+								<li class="tsd-kind-method tsd-parent-kind-class"><a href="crdsloggerservice.html#warn" class="tsd-kind-icon">Warn</a></li>
 							</ul>
 						</section>
 					</div>
@@ -113,87 +108,142 @@
 					<a name="constructor" class="tsd-anchor"></a>
 					<h3>constructor</h3>
 					<ul class="tsd-signatures tsd-kind-constructor tsd-parent-kind-class">
-						<li class="tsd-signature tsd-kind-icon">new <wbr>Okta<wbr>Tokens<span class="tsd-signature-symbol">(</span>accessToken<span class="tsd-signature-symbol">?: </span><span class="tsd-signature-type">any</span>, idToken<span class="tsd-signature-symbol">?: </span><span class="tsd-signature-type">any</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><a href="oktatokens.html" class="tsd-signature-type">OktaTokens</a></li>
+						<li class="tsd-signature tsd-kind-icon">new <wbr>Crds<wbr>Logger<wbr>Service<span class="tsd-signature-symbol">(</span>on<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">boolean</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><a href="crdsloggerservice.html" class="tsd-signature-type">CrdsLoggerService</a></li>
 					</ul>
 					<ul class="tsd-descriptions">
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/crdschurch/crds-client-auth/blob/45a52d0/src/models/crds-token.okta.ts#L6">models/crds-token.okta.ts:6</a></li>
+									<li>Defined in <a href="https://github.com/crdschurch/crds-client-auth/blob/22ff5cb/src/services/crds-logger.service.ts#L2">services/crds-logger.service.ts:2</a></li>
 								</ul>
 							</aside>
 							<h4 class="tsd-parameters-title">Parameters</h4>
 							<ul class="tsd-parameters">
 								<li>
-									<h5><span class="tsd-flag ts-flagDefault value">Default value</span> accessToken: <span class="tsd-signature-type">any</span><span class="tsd-signature-symbol"> =&nbsp;null</span></h5>
-								</li>
-								<li>
-									<h5><span class="tsd-flag ts-flagDefault value">Default value</span> idToken: <span class="tsd-signature-type">any</span><span class="tsd-signature-symbol"> =&nbsp;null</span></h5>
+									<h5>on: <span class="tsd-signature-type">boolean</span></h5>
 								</li>
 							</ul>
-							<h4 class="tsd-returns-title">Returns <a href="oktatokens.html" class="tsd-signature-type">OktaTokens</a></h4>
+							<h4 class="tsd-returns-title">Returns <a href="crdsloggerservice.html" class="tsd-signature-type">CrdsLoggerService</a></h4>
 						</li>
 					</ul>
 				</section>
 			</section>
-			<section class="tsd-panel-group tsd-member-group ">
+			<section class="tsd-panel-group tsd-member-group tsd-is-private tsd-is-private-protected">
 				<h2>Properties</h2>
-				<section class="tsd-panel tsd-member tsd-kind-property tsd-parent-kind-class">
-					<a name="access_token" class="tsd-anchor"></a>
-					<h3>access_<wbr>token</h3>
-					<div class="tsd-signature tsd-kind-icon">access_<wbr>token<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">any</span></div>
+				<section class="tsd-panel tsd-member tsd-kind-property tsd-parent-kind-class tsd-is-private">
+					<a name="on" class="tsd-anchor"></a>
+					<h3><span class="tsd-flag ts-flagPrivate">Private</span> on</h3>
+					<div class="tsd-signature tsd-kind-icon">on<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">boolean</span></div>
 					<aside class="tsd-sources">
-						<p>Implementation of <a href="../interfaces/icrdstokens.html">ICRDSTokens</a>.<a href="../interfaces/icrdstokens.html#access_token">access_token</a></p>
 						<ul>
-							<li>Defined in <a href="https://github.com/crdschurch/crds-client-auth/blob/45a52d0/src/models/crds-token.okta.ts#L4">models/crds-token.okta.ts:4</a></li>
-						</ul>
-					</aside>
-				</section>
-				<section class="tsd-panel tsd-member tsd-kind-property tsd-parent-kind-class">
-					<a name="id_token" class="tsd-anchor"></a>
-					<h3>id_<wbr>token</h3>
-					<div class="tsd-signature tsd-kind-icon">id_<wbr>token<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">any</span></div>
-					<aside class="tsd-sources">
-						<p>Implementation of <a href="../interfaces/icrdstokens.html">ICRDSTokens</a>.<a href="../interfaces/icrdstokens.html#id_token">id_token</a></p>
-						<ul>
-							<li>Defined in <a href="https://github.com/crdschurch/crds-client-auth/blob/45a52d0/src/models/crds-token.okta.ts#L5">models/crds-token.okta.ts:5</a></li>
-						</ul>
-					</aside>
-				</section>
-				<section class="tsd-panel tsd-member tsd-kind-property tsd-parent-kind-class">
-					<a name="provider" class="tsd-anchor"></a>
-					<h3>provider</h3>
-					<div class="tsd-signature tsd-kind-icon">provider<span class="tsd-signature-symbol">:</span> <a href="../enums/authenticationproviders.html" class="tsd-signature-type">AuthenticationProviders</a><span class="tsd-signature-symbol"> =&nbsp;AuthenticationProviders.Okta</span></div>
-					<aside class="tsd-sources">
-						<p>Implementation of <a href="../interfaces/icrdstokens.html">ICRDSTokens</a>.<a href="../interfaces/icrdstokens.html#provider">provider</a></p>
-						<ul>
-							<li>Defined in <a href="https://github.com/crdschurch/crds-client-auth/blob/45a52d0/src/models/crds-token.okta.ts#L6">models/crds-token.okta.ts:6</a></li>
+							<li>Defined in <a href="https://github.com/crdschurch/crds-client-auth/blob/22ff5cb/src/services/crds-logger.service.ts#L3">services/crds-logger.service.ts:3</a></li>
 						</ul>
 					</aside>
 				</section>
 			</section>
 			<section class="tsd-panel-group tsd-member-group ">
 				<h2>Methods</h2>
-				<section class="tsd-panel tsd-member tsd-kind-method tsd-parent-kind-class tsd-is-static">
-					<a name="from" class="tsd-anchor"></a>
-					<h3><span class="tsd-flag ts-flagStatic">Static</span> From</h3>
-					<ul class="tsd-signatures tsd-kind-method tsd-parent-kind-class tsd-is-static">
-						<li class="tsd-signature tsd-kind-icon">From<span class="tsd-signature-symbol">(</span>inc<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">Partial</span><span class="tsd-signature-symbol">&lt;</span><a href="../interfaces/icrdstokens.html" class="tsd-signature-type">ICRDSTokens</a><span class="tsd-signature-symbol">&gt;</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><a href="oktatokens.html" class="tsd-signature-type">OktaTokens</a></li>
+				<section class="tsd-panel tsd-member tsd-kind-method tsd-parent-kind-class">
+					<a name="error" class="tsd-anchor"></a>
+					<h3>Error</h3>
+					<ul class="tsd-signatures tsd-kind-method tsd-parent-kind-class">
+						<li class="tsd-signature tsd-kind-icon">Error<span class="tsd-signature-symbol">(</span>header<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">string</span>, detail<span class="tsd-signature-symbol">?: </span><span class="tsd-signature-type">any</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">void</span></li>
 					</ul>
 					<ul class="tsd-descriptions">
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/crdschurch/crds-client-auth/blob/45a52d0/src/models/crds-token.okta.ts#L17">models/crds-token.okta.ts:17</a></li>
+									<li>Defined in <a href="https://github.com/crdschurch/crds-client-auth/blob/22ff5cb/src/services/crds-logger.service.ts#L5">services/crds-logger.service.ts:5</a></li>
 								</ul>
 							</aside>
 							<h4 class="tsd-parameters-title">Parameters</h4>
 							<ul class="tsd-parameters">
 								<li>
-									<h5>inc: <span class="tsd-signature-type">Partial</span><span class="tsd-signature-symbol">&lt;</span><a href="../interfaces/icrdstokens.html" class="tsd-signature-type">ICRDSTokens</a><span class="tsd-signature-symbol">&gt;</span></h5>
+									<h5>header: <span class="tsd-signature-type">string</span></h5>
+								</li>
+								<li>
+									<h5><span class="tsd-flag ts-flagOptional">Optional</span> detail: <span class="tsd-signature-type">any</span></h5>
 								</li>
 							</ul>
-							<h4 class="tsd-returns-title">Returns <a href="oktatokens.html" class="tsd-signature-type">OktaTokens</a></h4>
+							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">void</span></h4>
+						</li>
+					</ul>
+				</section>
+				<section class="tsd-panel tsd-member tsd-kind-method tsd-parent-kind-class">
+					<a name="info" class="tsd-anchor"></a>
+					<h3>Info</h3>
+					<ul class="tsd-signatures tsd-kind-method tsd-parent-kind-class">
+						<li class="tsd-signature tsd-kind-icon">Info<span class="tsd-signature-symbol">(</span>header<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">string</span>, detail<span class="tsd-signature-symbol">?: </span><span class="tsd-signature-type">any</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">void</span></li>
+					</ul>
+					<ul class="tsd-descriptions">
+						<li class="tsd-description">
+							<aside class="tsd-sources">
+								<ul>
+									<li>Defined in <a href="https://github.com/crdschurch/crds-client-auth/blob/22ff5cb/src/services/crds-logger.service.ts#L25">services/crds-logger.service.ts:25</a></li>
+								</ul>
+							</aside>
+							<h4 class="tsd-parameters-title">Parameters</h4>
+							<ul class="tsd-parameters">
+								<li>
+									<h5>header: <span class="tsd-signature-type">string</span></h5>
+								</li>
+								<li>
+									<h5><span class="tsd-flag ts-flagOptional">Optional</span> detail: <span class="tsd-signature-type">any</span></h5>
+								</li>
+							</ul>
+							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">void</span></h4>
+						</li>
+					</ul>
+				</section>
+				<section class="tsd-panel tsd-member tsd-kind-method tsd-parent-kind-class">
+					<a name="log" class="tsd-anchor"></a>
+					<h3>Log</h3>
+					<ul class="tsd-signatures tsd-kind-method tsd-parent-kind-class">
+						<li class="tsd-signature tsd-kind-icon">Log<span class="tsd-signature-symbol">(</span>header<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">string</span>, detail<span class="tsd-signature-symbol">?: </span><span class="tsd-signature-type">any</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">void</span></li>
+					</ul>
+					<ul class="tsd-descriptions">
+						<li class="tsd-description">
+							<aside class="tsd-sources">
+								<ul>
+									<li>Defined in <a href="https://github.com/crdschurch/crds-client-auth/blob/22ff5cb/src/services/crds-logger.service.ts#L35">services/crds-logger.service.ts:35</a></li>
+								</ul>
+							</aside>
+							<h4 class="tsd-parameters-title">Parameters</h4>
+							<ul class="tsd-parameters">
+								<li>
+									<h5>header: <span class="tsd-signature-type">string</span></h5>
+								</li>
+								<li>
+									<h5><span class="tsd-flag ts-flagOptional">Optional</span> detail: <span class="tsd-signature-type">any</span></h5>
+								</li>
+							</ul>
+							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">void</span></h4>
+						</li>
+					</ul>
+				</section>
+				<section class="tsd-panel tsd-member tsd-kind-method tsd-parent-kind-class">
+					<a name="warn" class="tsd-anchor"></a>
+					<h3>Warn</h3>
+					<ul class="tsd-signatures tsd-kind-method tsd-parent-kind-class">
+						<li class="tsd-signature tsd-kind-icon">Warn<span class="tsd-signature-symbol">(</span>header<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">string</span>, detail<span class="tsd-signature-symbol">?: </span><span class="tsd-signature-type">any</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">void</span></li>
+					</ul>
+					<ul class="tsd-descriptions">
+						<li class="tsd-description">
+							<aside class="tsd-sources">
+								<ul>
+									<li>Defined in <a href="https://github.com/crdschurch/crds-client-auth/blob/22ff5cb/src/services/crds-logger.service.ts#L15">services/crds-logger.service.ts:15</a></li>
+								</ul>
+							</aside>
+							<h4 class="tsd-parameters-title">Parameters</h4>
+							<ul class="tsd-parameters">
+								<li>
+									<h5>header: <span class="tsd-signature-type">string</span></h5>
+								</li>
+								<li>
+									<h5><span class="tsd-flag ts-flagOptional">Optional</span> detail: <span class="tsd-signature-type">any</span></h5>
+								</li>
+							</ul>
+							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">void</span></h4>
 						</li>
 					</ul>
 				</section>
@@ -210,58 +260,61 @@
 			<nav class="tsd-navigation secondary menu-sticky">
 				<ul class="before-current">
 					<li class=" tsd-kind-enum">
-						<a href="../enums/authenticationproviders.html" class="tsd-kind-icon">Authentication<wbr>Providers</a>
+						<a href="../enums/crdsauthenticationproviders.html" class="tsd-kind-icon">Crds<wbr>Authentication<wbr>Providers</a>
 					</li>
 					<li class=" tsd-kind-class">
 						<a href="crdsauthenticationservice.html" class="tsd-kind-icon">Crds<wbr>Authentication<wbr>Service</a>
 					</li>
-					<li class=" tsd-kind-class">
-						<a href="crdsmpservice.html" class="tsd-kind-icon">Crds<wbr>MpService</a>
-					</li>
-					<li class=" tsd-kind-class">
-						<a href="crdsoktaservice.html" class="tsd-kind-icon">Crds<wbr>Okta<wbr>Service</a>
-					</li>
-					<li class=" tsd-kind-class">
-						<a href="loggerservice.html" class="tsd-kind-icon">Logger<wbr>Service</a>
-					</li>
-					<li class=" tsd-kind-class">
-						<a href="mptokens.html" class="tsd-kind-icon">Mp<wbr>Tokens</a>
-					</li>
 				</ul>
 				<ul class="current">
 					<li class="current tsd-kind-class">
-						<a href="oktatokens.html" class="tsd-kind-icon">Okta<wbr>Tokens</a>
+						<a href="crdsloggerservice.html" class="tsd-kind-icon">Crds<wbr>Logger<wbr>Service</a>
 						<ul>
 							<li class=" tsd-kind-constructor tsd-parent-kind-class">
-								<a href="oktatokens.html#constructor" class="tsd-kind-icon">constructor</a>
+								<a href="crdsloggerservice.html#constructor" class="tsd-kind-icon">constructor</a>
 							</li>
-							<li class=" tsd-kind-property tsd-parent-kind-class">
-								<a href="oktatokens.html#access_token" class="tsd-kind-icon">access_<wbr>token</a>
+							<li class=" tsd-kind-property tsd-parent-kind-class tsd-is-private">
+								<a href="crdsloggerservice.html#on" class="tsd-kind-icon">on</a>
 							</li>
-							<li class=" tsd-kind-property tsd-parent-kind-class">
-								<a href="oktatokens.html#id_token" class="tsd-kind-icon">id_<wbr>token</a>
+							<li class=" tsd-kind-method tsd-parent-kind-class">
+								<a href="crdsloggerservice.html#error" class="tsd-kind-icon">Error</a>
 							</li>
-							<li class=" tsd-kind-property tsd-parent-kind-class">
-								<a href="oktatokens.html#provider" class="tsd-kind-icon">provider</a>
+							<li class=" tsd-kind-method tsd-parent-kind-class">
+								<a href="crdsloggerservice.html#info" class="tsd-kind-icon">Info</a>
 							</li>
-							<li class=" tsd-kind-method tsd-parent-kind-class tsd-is-static">
-								<a href="oktatokens.html#from" class="tsd-kind-icon">From</a>
+							<li class=" tsd-kind-method tsd-parent-kind-class">
+								<a href="crdsloggerservice.html#log" class="tsd-kind-icon">Log</a>
+							</li>
+							<li class=" tsd-kind-method tsd-parent-kind-class">
+								<a href="crdsloggerservice.html#warn" class="tsd-kind-icon">Warn</a>
 							</li>
 						</ul>
 					</li>
 				</ul>
 				<ul class="after-current">
-					<li class=" tsd-kind-interface">
-						<a href="../interfaces/crdsauthconfig.html" class="tsd-kind-icon">CRDSAuth<wbr>Config</a>
+					<li class=" tsd-kind-class">
+						<a href="crdsmpservice.html" class="tsd-kind-icon">Crds<wbr>MpService</a>
+					</li>
+					<li class=" tsd-kind-class">
+						<a href="crdsmptokens.html" class="tsd-kind-icon">Crds<wbr>MpTokens</a>
+					</li>
+					<li class=" tsd-kind-class">
+						<a href="crdsoktaservice.html" class="tsd-kind-icon">Crds<wbr>Okta<wbr>Service</a>
+					</li>
+					<li class=" tsd-kind-class">
+						<a href="crdsoktatokens.html" class="tsd-kind-icon">Crds<wbr>Okta<wbr>Tokens</a>
 					</li>
 					<li class=" tsd-kind-interface">
-						<a href="../interfaces/icrdstokens.html" class="tsd-kind-icon">ICRDSTokens</a>
+						<a href="../interfaces/crdsauthconfig.html" class="tsd-kind-icon">Crds<wbr>Auth<wbr>Config</a>
 					</li>
 					<li class=" tsd-kind-interface">
-						<a href="../interfaces/mpconfig.html" class="tsd-kind-icon">Mp<wbr>Config</a>
+						<a href="../interfaces/crdsmpconfig.html" class="tsd-kind-icon">Crds<wbr>MpConfig</a>
 					</li>
 					<li class=" tsd-kind-interface">
-						<a href="../interfaces/oktaconfig.html" class="tsd-kind-icon">Okta<wbr>Config</a>
+						<a href="../interfaces/crdsoktaconfig.html" class="tsd-kind-icon">Crds<wbr>Okta<wbr>Config</a>
+					</li>
+					<li class=" tsd-kind-interface">
+						<a href="../interfaces/crdstokens.html" class="tsd-kind-icon">Crds<wbr>Tokens</a>
 					</li>
 				</ul>
 			</nav>

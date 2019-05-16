@@ -66,6 +66,133 @@
 			<div class="tsd-panel tsd-typography">
 				<h1 id="crds-client-auth">crds-client-auth</h1>
 				<p>Client side library for managing auth</p>
+				<h1 id="crossroads-okta-angular-library">Crossroads Okta Angular Library</h1>
+				<p>Crds-okta-auth will enable your product to:</p>
+				<ul>
+					<li>authenticate through okta</li>
+					<li>check authentication status</li>
+					<li>protect routes</li>
+					<li>append access tokens to requests to predefined origins</li>
+				</ul>
+				<h2 id="installing">Installing</h2>
+				<h3 id="install-via-npm-with">Install via NPM with</h3>
+				<pre><code class="language-bash">npm install --save @crds_npm/crds-okta-auth</code></pre>
+				<h3 id="build-the-config-json-and-add-crds-okta-auth-module-as-a-dependency">Build the config json and add crds-okta-auth module as a dependency</h3>
+				<pre><code class="language-typescript"><span class="hljs-keyword">import</span> {
+  CrdsOktaAuthModule,
+  CRDSOktaConfig,
+  AuthenticatedGuard,
+  CRDSTokenInjectorInterceptor
+} <span class="hljs-keyword">from</span> <span class="hljs-string">'@crds_npm/crds-okta-auth'</span>;
+
+<span class="hljs-keyword">const</span> authConfig: CRDSOktaConfig = {
+  oktaBase: {
+    url: <span class="hljs-string">'INSERT URL'</span>,
+    clientId: <span class="hljs-string">'INSERT CLIENT ID'</span>,
+    redirectUri: <span class="hljs-string">'URL TO REDIRECT TO AFTER AUTHENTICATION'</span>,
+    idps: [{ <span class="hljs-keyword">type</span>: <span class="hljs-string">'FACEBOOK'</span>, id: <span class="hljs-string">'FACEBOOK IDP ID'</span> }, { <span class="hljs-keyword">type</span>: <span class="hljs-string">'GOOGLE'</span>, id: <span class="hljs-string">'GOOGLE IDP ID'</span> }]
+  },
+  tokenInjectorDomains: [<span class="hljs-string">'ARRAY OF DOMAINS TO APPEND TOKEN INTO HEADER ON REQUESTS'</span>],
+  logging: <span class="hljs-literal">true</span>
+};
+
+<span class="hljs-meta">@NgModule</span>({
+  declarations: [
+    ...
+  ],
+  imports: [
+    ...
+    CrdsOktaAuthModule.forRoot(authConfig)
+    ...
+  ],
+  providers: [
+    ...
+    { provide: HTTP_INTERCEPTORS, useClass: CRDSTokenInjectorInterceptor, multi: <span class="hljs-literal">true</span> }
+    ...
+    ]
+})</code></pre>
+				<h2 id="api">API</h2>
+				<hr>
+				<h3 id="table-of-contents">Table of Contents</h3>
+				<table>
+					<thead>
+						<tr>
+							<th>Modules</th>
+							<th>Services</th>
+							<th>Interceptors</th>
+							<th>Guards</th>
+							<th>Directives</th>
+							<th>Classes</th>
+						</tr>
+					</thead>
+					<tbody><tr>
+							<td><a href="#CrdsOktaAuthModule">CrdsOktaAuthModule</a></td>
+							<td><a href="#CrdsAuthenticationService">CrdsAuthenticationService</a></td>
+							<td><a href="#CrdsTokenInjectorInterceptor">CrdsTokenInjectorInterceptor</a></td>
+							<td><a href="#AuthenticatedGuard">AuthenticatedGuard</a></td>
+							<td><a href="#CRDSSignInWidgetDirective">CRDSSignInWidgetDirective</a></td>
+							<td><a href="#CRDSOktaConfig">CRDSOktaConfig</a></td>
+						</tr>
+						<tr>
+							<td>&nbsp;</td>
+							<td><a href="#CrdsSigninService">CrdsSigninService</a></td>
+							<td>&nbsp;</td>
+							<td><a href="#CanLoginGuard">CanLoginGuard</a></td>
+							<td>&nbsp;</td>
+							<td><a href="#CRDSTokens">CRDSTokens\ICRDSTokens</a></td>
+						</tr>
+				</tbody></table>
+				<h3 id="documentation">Documentation</h3>
+				<hr>
+				<h4 id="crdsoktaauthmodule"><strong><em><code>CrdsOktaAuthModule</code></em></strong></h4>
+				<hr>
+				<blockquote>
+					<p>Base angular module for providing CRDS-OKTA-AUTH for your application.</p>
+				</blockquote>
+				<p><strong><code>function</code>: forRoot(config: CRDSOktaConfig): ModuleWithProviders</strong></p>
+				<blockquote>
+					<p>Requires an instance of <a href="#CRDSOktaConfig"><code>CRDSOktaConfig</code></a> to instantiate.  Provided in the <code>import</code> section of your Core Module.</p>
+				</blockquote>
+				<pre><code class="language-typescript"><span class="hljs-keyword">import</span> { CrdsOktaAuthModule, CRDSOktaConfig} <span class="hljs-keyword">from</span> <span class="hljs-string">'@crds_npm/crds-okta-auth'</span>;
+
+<span class="hljs-keyword">const</span> authConfig: CRDSOktaConfig = {...};
+
+<span class="hljs-meta">@NgModule</span>({
+  declarations: [...],
+  imports: [CrdsOktaAuthModule.forRoot(authConfig)
+    ...
+  ],
+  providers: [...]
+})</code></pre>
+				<hr>
+				<h4 id="crdsauthenticationservice"><strong><em><code>CrdsAuthenticationService</code></em></strong></h4>
+				<hr>
+				<blockquote>
+					<p>Basic service used to interact with Okta Auth Status</p>
+				</blockquote>
+				<p><strong><code>function</code>: authenticated(): Observable<<a href="#CRDSTokens">CRDSTokens</a>></strong></p>
+				<blockquote>
+					<p>Returns an observable that contains either the tokens for the user (if logged in), or null if not logged in.  This function will check the (local) token manager first to see if there is a session, and if there is no local session, it will check the server for an active session, and set it in the (local) token manager if one exists. </p>
+				</blockquote>
+				<pre><code class="language-typescript">  authenticated().subscribe(<span class="hljs-function">(<span class="hljs-params">tokens: CRDSTokens</span>) =&gt;</span> {
+    <span class="hljs-keyword">if</span> (tokens != <span class="hljs-literal">null</span>) {
+      <span class="hljs-built_in">console</span>.log(<span class="hljs-string">'user logged in'</span>, tokens);
+    } <span class="hljs-keyword">else</span> {
+      <span class="hljs-built_in">console</span>.log(<span class="hljs-string">'user is NOT logged in'</span>);
+    }
+  }</code></pre>
+				<p><strong><code>function</code>: signOut(): Observable<boolean></strong></p>
+				<blockquote>
+					<p>Returns an observable that contains whether the signout action was successful or not.</p>
+				</blockquote>
+				<pre><code class="language-typescript">    signOut().subscribe(<span class="hljs-function"><span class="hljs-params">success</span> =&gt;</span> {
+      <span class="hljs-keyword">if</span> (success) {
+        <span class="hljs-built_in">console</span>.log(<span class="hljs-string">'log out worked'</span>)
+      } <span class="hljs-keyword">else</span> {
+        <span class="hljs-built_in">console</span>.log(<span class="hljs-string">'log out failed'</span>)
+      }
+    });</code></pre>
+				<hr>
 			</div>
 		</div>
 		<div class="col-4 col-menu menu-sticky-wrap menu-highlight">
@@ -82,37 +209,37 @@
 			<nav class="tsd-navigation secondary menu-sticky">
 				<ul class="before-current">
 					<li class=" tsd-kind-enum">
-						<a href="enums/authenticationproviders.html" class="tsd-kind-icon">Authentication<wbr>Providers</a>
+						<a href="enums/crdsauthenticationproviders.html" class="tsd-kind-icon">Crds<wbr>Authentication<wbr>Providers</a>
 					</li>
 					<li class=" tsd-kind-class">
 						<a href="classes/crdsauthenticationservice.html" class="tsd-kind-icon">Crds<wbr>Authentication<wbr>Service</a>
 					</li>
 					<li class=" tsd-kind-class">
+						<a href="classes/crdsloggerservice.html" class="tsd-kind-icon">Crds<wbr>Logger<wbr>Service</a>
+					</li>
+					<li class=" tsd-kind-class">
 						<a href="classes/crdsmpservice.html" class="tsd-kind-icon">Crds<wbr>MpService</a>
+					</li>
+					<li class=" tsd-kind-class">
+						<a href="classes/crdsmptokens.html" class="tsd-kind-icon">Crds<wbr>MpTokens</a>
 					</li>
 					<li class=" tsd-kind-class">
 						<a href="classes/crdsoktaservice.html" class="tsd-kind-icon">Crds<wbr>Okta<wbr>Service</a>
 					</li>
 					<li class=" tsd-kind-class">
-						<a href="classes/loggerservice.html" class="tsd-kind-icon">Logger<wbr>Service</a>
-					</li>
-					<li class=" tsd-kind-class">
-						<a href="classes/mptokens.html" class="tsd-kind-icon">Mp<wbr>Tokens</a>
-					</li>
-					<li class=" tsd-kind-class">
-						<a href="classes/oktatokens.html" class="tsd-kind-icon">Okta<wbr>Tokens</a>
+						<a href="classes/crdsoktatokens.html" class="tsd-kind-icon">Crds<wbr>Okta<wbr>Tokens</a>
 					</li>
 					<li class=" tsd-kind-interface">
-						<a href="interfaces/crdsauthconfig.html" class="tsd-kind-icon">CRDSAuth<wbr>Config</a>
+						<a href="interfaces/crdsauthconfig.html" class="tsd-kind-icon">Crds<wbr>Auth<wbr>Config</a>
 					</li>
 					<li class=" tsd-kind-interface">
-						<a href="interfaces/icrdstokens.html" class="tsd-kind-icon">ICRDSTokens</a>
+						<a href="interfaces/crdsmpconfig.html" class="tsd-kind-icon">Crds<wbr>MpConfig</a>
 					</li>
 					<li class=" tsd-kind-interface">
-						<a href="interfaces/mpconfig.html" class="tsd-kind-icon">Mp<wbr>Config</a>
+						<a href="interfaces/crdsoktaconfig.html" class="tsd-kind-icon">Crds<wbr>Okta<wbr>Config</a>
 					</li>
 					<li class=" tsd-kind-interface">
-						<a href="interfaces/oktaconfig.html" class="tsd-kind-icon">Okta<wbr>Config</a>
+						<a href="interfaces/crdstokens.html" class="tsd-kind-icon">Crds<wbr>Tokens</a>
 					</li>
 				</ul>
 			</nav>
