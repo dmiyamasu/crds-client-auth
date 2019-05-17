@@ -13,46 +13,46 @@ export class CrdsAuthenticationService {
   private logService: CrdsLoggerService;
 
   constructor(private crdsAuthConfig: CrdsAuthConfig) {
-    // this.authenticationStatus$ = new BehaviorSubject<CrdsTokens | null>(null);
-    // this.logService = new CrdsLoggerService(crdsAuthConfig.logging);
+    this.authenticationStatus$ = new BehaviorSubject<CrdsTokens | null>(null);
+    this.logService = new CrdsLoggerService(crdsAuthConfig.logging);
 
-    // let oktaService = new CrdsOktaService(this.crdsAuthConfig.oktaConfig, this.logService);
+    let oktaService = new CrdsOktaService(this.crdsAuthConfig.oktaConfig, this.logService);
 
-    // oktaService.subscribeToTokenExpiration(() => {
-    //   this.authenticate(); //Force a token update
-    // });
+    oktaService.subscribeToTokenExpiration(() => {
+      this.authenticate(); //Force a token update
+    });
 
-    // oktaService.subscribeToTokenRenewed(() => {
+    oktaService.subscribeToTokenRenewed(() => {
 
-    // });
+    });
 
-    // oktaService.subscribeToTokenError(() => {
-    //   this.authenticationStatus$.next(null);
-    // });
+    oktaService.subscribeToTokenError(() => {
+      this.authenticationStatus$.next(null);
+    });
 
-    // var hidden, visibilityChange;
-    // if (typeof document.hidden !== "undefined") { // Opera 12.10 and Firefox 18 and later support
-    //   hidden = "hidden";
-    //   visibilityChange = "visibilitychange";
-    // } else if (typeof (document as any).mozHidden !== "undefined") {
-    //   hidden = "mozHidden";
-    //   visibilityChange = "mozvisibilitychange";
-    // } else if (typeof (document as any).msHidden !== "undefined") {
-    //   hidden = "msHidden";
-    //   visibilityChange = "msvisibilitychange";
-    // } else if (typeof (document as any).webkitHidden !== "undefined") {
-    //   hidden = "webkitHidden";
-    //   visibilityChange = "webkitvisibilitychange";
-    // }
+    var hidden, visibilityChange;
+    if (typeof document.hidden !== "undefined") { // Opera 12.10 and Firefox 18 and later support
+      hidden = "hidden";
+      visibilityChange = "visibilitychange";
+    } else if (typeof (document as any).mozHidden !== "undefined") {
+      hidden = "mozHidden";
+      visibilityChange = "mozvisibilitychange";
+    } else if (typeof (document as any).msHidden !== "undefined") {
+      hidden = "msHidden";
+      visibilityChange = "msvisibilitychange";
+    } else if (typeof (document as any).webkitHidden !== "undefined") {
+      hidden = "webkitHidden";
+      visibilityChange = "webkitvisibilitychange";
+    }
 
-    // document.addEventListener(visibilityChange, () => {
-    //   if (document.visibilityState === 'visible'){
-    //     this.authenticate().subscribe();
-    //   }
-    // });
+    document.addEventListener(visibilityChange, () => {
+      if (document.visibilityState === 'visible'){
+        this.authenticate().subscribe();
+      }
+    });
 
-    // this.providerServiceKVP[CrdsAuthenticationProviders.Okta] = new CrdsOktaService(crdsAuthConfig.oktaConfig, this.logService);
-    // this.providerServiceKVP[CrdsAuthenticationProviders.Mp] = new CrdsMpService(crdsAuthConfig.mpConfig.accessTokenCookie, crdsAuthConfig.mpConfig.refreshTokenCookie);
+    this.providerServiceKVP[CrdsAuthenticationProviders.Okta] = new CrdsOktaService(crdsAuthConfig.oktaConfig, this.logService);
+    this.providerServiceKVP[CrdsAuthenticationProviders.Mp] = new CrdsMpService(crdsAuthConfig.mpConfig.accessTokenCookie, crdsAuthConfig.mpConfig.refreshTokenCookie);
   }
 
   public authenticated(): Observable<CrdsTokens | null> {
