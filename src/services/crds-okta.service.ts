@@ -53,9 +53,9 @@ export class CrdsOktaService {
     }
 
     private getTokenDictionary(): Observable<CrdsOktaTokens> {
-        const idToken = from(this.oktaAuthClient.tokenManager.get('access_token'));
-        const accessToken$ = from(this.oktaAuthClient.tokenManager.get('id_token'));
-        return forkJoin([idToken, accessToken$]).pipe(
+        const idToken$ = from(this.oktaAuthClient.tokenManager.get('id_token'));
+        const accessToken$ = from(this.oktaAuthClient.tokenManager.get('access_token'));
+        return forkJoin([idToken$, accessToken$]).pipe(
             first(),
             map(([id, access]) => {
                 if (!!id && !!access) {
