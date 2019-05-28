@@ -19,7 +19,7 @@ export class CrdsAuthenticationService {
     let oktaService = new CrdsOktaService(this.crdsAuthConfig.oktaConfig, this.logService);
 
     oktaService.subscribeToTokenExpiration(() => {
-      this.authenticate(); //Force a token update
+      this.authenticate().pipe(first()).subscribe(); //Force a token update
     });
 
     oktaService.subscribeToTokenRenewed(() => {
