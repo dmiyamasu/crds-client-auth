@@ -47,7 +47,7 @@ export class CrdsAuthenticationService {
 
     document.addEventListener(visibilityChange, () => {
       if (document.visibilityState === 'visible'){
-        this.authenticate().subscribe();
+        this.authenticate().pipe(first()).subscribe();
       }
     });
 
