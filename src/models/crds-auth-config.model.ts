@@ -12,7 +12,7 @@ export interface CrdsOktaConfig {
   clientId: string;
   redirectUri: string;
   idps: { type: string; id: string }[];
-  issuer: 'default',
+  issuer: string,
 
   // TokenManager config
   tokenManager: {

@@ -23,7 +23,7 @@ export class CrdsAuthenticationService {
     });
 
     oktaService.subscribeToTokenRenewed(() => {
-
+      this.logService.Info("Token Renewed");
     });
 
     oktaService.subscribeToTokenError(() => {
