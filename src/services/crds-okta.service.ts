@@ -1,6 +1,6 @@
 import { Observable, of, from, forkJoin } from 'rxjs';
 import { switchMap, first, map, catchError, tap } from 'rxjs/operators';
-import * as OktaAuth from '@okta/okta-auth-js';
+import OktaAuth from '@okta/okta-auth-js';
 import { CrdsOktaConfig } from '../models/crds-auth-config.model';
 import { CrdsOktaTokens } from '../models/crds-token.okta';
 import { CrdsLoggerService } from './crds-logger.service';
