@@ -8,15 +8,15 @@ export interface CrdsAuthConfig {
 }
 
 export interface CrdsOktaConfig {
-  url: string;
+  url?: string;
   clientId: string;
-  redirectUri: string;
-  idps: { type: string; id: string }[];
+  redirectUri?: string;
+  idps?: { type: string; id: string }[];
   issuer: string,
 
   // TokenManager config
   tokenManager: {
-    storage: 'cookie'
+    storage: string
   },
 }
 
