@@ -83,14 +83,8 @@ CrdsMpConfig,
 CrdsAuthenticationProviders } <span class="hljs-keyword">from</span>  <span class="hljs-string">'@crds_npm/crds-client-auth'</span>;
 
 <span class="hljs-keyword">let</span>  oktaConfig:  CrdsOktaConfig  = {
-    url:  <span class="hljs-string">'OKTA_URL'</span>,
     clientId:  <span class="hljs-string">'CLIENT_ID'</span>,
-    redirectUri:  <span class="hljs-string">'REDIRECT_URI'</span>,
-    idps: [
-        { <span class="hljs-keyword">type</span>:  <span class="hljs-string">'FACEBOOK'</span>, id:  <span class="hljs-string">'FACEBOOK_ID'</span> },
-        { <span class="hljs-keyword">type</span>:  <span class="hljs-string">'GOOGLE'</span>, id:  <span class="hljs-string">'GOOGLE_ID'</span> }
-    ],
-    issuer:  <span class="hljs-string">'default'</span>,
+    issuer:  <span class="hljs-string">'{OKTA_URL}/oauth2/default'</span>,
     tokenManager: {
         storage:  <span class="hljs-string">'cookie'</span>
     },
