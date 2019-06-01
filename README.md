@@ -24,14 +24,8 @@ CrdsMpConfig,
 CrdsAuthenticationProviders } from  '@crds_npm/crds-client-auth';
   
 let  oktaConfig:  CrdsOktaConfig  = {
-	url:  'OKTA_URL',
 	clientId:  'CLIENT_ID',
-	redirectUri:  'REDIRECT_URI',
-	idps: [
-		{ type:  'FACEBOOK', id:  'FACEBOOK_ID' },
-		{ type:  'GOOGLE', id:  'GOOGLE_ID' }
-	],
-	issuer:  'default',
+	issuer:  '{OKTA_URL}/oauth2/default',
 	tokenManager: {
 		storage:  'cookie'
 	},
