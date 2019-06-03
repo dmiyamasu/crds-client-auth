@@ -35,7 +35,6 @@ describe('CrdsOktaService', () => {
                     expect(mokta.session.exists).not.toHaveBeenCalled();
                     expect(mokta.tokenManager.get).toHaveBeenCalled();
                 }, 100);
-
             });
 
         it(
