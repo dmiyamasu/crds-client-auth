@@ -1,7 +1,6 @@
 import { Observable, of, from, forkJoin } from 'rxjs';
 import { switchMap, first, map, catchError, tap } from 'rxjs/operators';
 import OktaAuth from '@okta/okta-auth-js';
-import { CrdsOktaConfig } from '../models/crds-auth-config.model';
 import { CrdsOktaTokens } from '../models/crds-token.okta';
 import { CrdsLoggerService } from './crds-logger.service';
 
@@ -9,8 +8,8 @@ export class CrdsOktaService {
 
     private oktaAuthClient: OktaAuth;
 
-    constructor(oktaConfig: CrdsOktaConfig, private log: CrdsLoggerService) {
-        this.oktaAuthClient = new OktaAuth(oktaConfig);
+    constructor(okta: OktaAuth, private log: CrdsLoggerService) {
+        this.oktaAuthClient = okta;
     }
 
     public authenticated(): Observable<CrdsOktaTokens> {
