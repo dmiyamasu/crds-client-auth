@@ -5,6 +5,7 @@ import { CrdsOktaService } from './crds-okta.service';
 import { CrdsMpService } from './crds-mp.service';
 import { first, switchMap, tap, map } from 'rxjs/operators';
 import { CrdsLoggerService } from './crds-logger.service';
+import OktaAuth from '@okta/okta-auth-js';
 
 export class CrdsAuthenticationService {
   providerServiceKVP: { [key: string]: any } = {};
@@ -16,7 +17,9 @@ export class CrdsAuthenticationService {
     this.authenticationStatus$ = new BehaviorSubject<CrdsTokens | null>(null);
     this.logService = new CrdsLoggerService(crdsAuthConfig.logging);
 
-    let oktaService = new CrdsOktaService(this.crdsAuthConfig.oktaConfig, this.logService);
+    let oktajs = new OktaAuth(this.crdsAuthConfig.oktaConfig);
+
+    let oktaService = new CrdsOktaService(oktajs, this.logService);
 
     oktaService.subscribeToTokenExpiration(() => {
       this.authenticate().pipe(first()).subscribe(); //Force a token update
@@ -30,20 +33,7 @@ export class CrdsAuthenticationService {
       this.authenticationStatus$.next(null);
     });
 
-    var hidden, visibilityChange;
-    if (typeof document.hidden !== "undefined") { // Opera 12.10 and Firefox 18 and later support
-      hidden = "hidden";
-      visibilityChange = "visibilitychange";
-    } else if (typeof (document as any).mozHidden !== "undefined") {
-      hidden = "mozHidden";
-      visibilityChange = "mozvisibilitychange";
-    } else if (typeof (document as any).msHidden !== "undefined") {
-      hidden = "msHidden";
-      visibilityChange = "msvisibilitychange";
-    } else if (typeof (document as any).webkitHidden !== "undefined") {
-      hidden = "webkitHidden";
-      visibilityChange = "webkitvisibilitychange";
-    }
+    let visibilityChange: string = this.getVisibilityChange();
 
     document.addEventListener(visibilityChange, () => {
       if (document.visibilityState === 'visible'){
@@ -51,8 +41,24 @@ export class CrdsAuthenticationService {
       }
     });
 
-    this.providerServiceKVP[CrdsAuthenticationProviders.Okta] = new CrdsOktaService(crdsAuthConfig.oktaConfig, this.logService);
+    this.providerServiceKVP[CrdsAuthenticationProviders.Okta] = oktaService;
     this.providerServiceKVP[CrdsAuthenticationProviders.Mp] = new CrdsMpService(crdsAuthConfig.mpConfig.accessTokenCookie, crdsAuthConfig.mpConfig.refreshTokenCookie);
+  }
+
+  private getVisibilityChange(): string {
+    let visibilityChange: string;
+
+    if (typeof document.hidden !== "undefined") { // Opera 12.10 and Firefox 18 and later support
+      visibilityChange = "visibilitychange";
+    } else if (typeof (document as any).mozHidden !== "undefined") {
+      visibilityChange = "mozvisibilitychange";
+    } else if (typeof (document as any).msHidden !== "undefined") {
+      visibilityChange = "msvisibilitychange";
+    } else if (typeof (document as any).webkitHidden !== "undefined") {
+      visibilityChange = "webkitvisibilitychange";
+    }
+
+    return visibilityChange;
   }
 
   public authenticated(): Observable<CrdsTokens | null> {
