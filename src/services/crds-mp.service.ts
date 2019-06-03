@@ -12,7 +12,7 @@ export class CrdsMpService {
     let refreshToken = Utilities.getCookie(this.refreshTokenCookie);
 
     if (accessToken)
-      return of(CrdsMpTokens.From({ access_token: accessToken, refresh_token: refreshToken }));
+      return of(CrdsMpTokens.From({ access_token: { 'access_token': accessToken}, refresh_token: refreshToken }));
     else
       return of(null);
   }
