@@ -23,8 +23,7 @@ describe("CrdsMpService", function () {
             let tokens;
             service.authenticated().subscribe(t => {
                 tokens = t;
-
-                expect(tokens).toEqual(CrdsMpTokens.From({ access_token: 'token1', refresh_token: 'token1' }));
+                expect(tokens).toEqual(CrdsMpTokens.From({ access_token: { 'access_token': 'token1'}, refresh_token: 'token1' }));
             });
         });
 
