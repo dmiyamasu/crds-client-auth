@@ -23,11 +23,9 @@ describe("CrdsMpService", function () {
             let tokens;
             service.authenticated().subscribe(t => {
                 tokens = t;
-            });
 
-            setTimeout(() => {
                 expect(tokens).toEqual(CrdsMpTokens.From({ access_token: 'token1', refresh_token: 'token1' }));
-            }, 1);
+            });
         });
 
         it('tokens not in cookies, should return null', () => {
@@ -37,11 +35,9 @@ describe("CrdsMpService", function () {
             let tokens;
             service.authenticated().subscribe(t => {
                 tokens = t;
-            });
-            
-            setTimeout(() => {
+
                 expect(tokens).toEqual(null);
-            }, 1);
+            });
         });
     });
 
@@ -53,11 +49,9 @@ describe("CrdsMpService", function () {
             let success;
             service.signOut().subscribe(s => {
                 success = s;
-            });
 
-            setTimeout(() => {
                 expect(success).toBe(true);
-            }, 1);
+            });
         });
 
         it ('tokens not in cookies, return false', () => {
@@ -67,11 +61,8 @@ describe("CrdsMpService", function () {
             let success;
             service.signOut().subscribe(s => {
                 success = s;
-            });
-
-            setTimeout(() => {
                 expect(success).toBe(false);
-            }, 1);
+            });
         });
     });
 });
