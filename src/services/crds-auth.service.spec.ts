@@ -1,8 +1,8 @@
 import { CrdsOktaConfig, CrdsMpConfig, CrdsAuthConfig, CrdsAuthenticationProviders, CrdsAuthenticationService } from '..';
 import 'jasmine';
 
-describe('my passing test', function () {
-	it('passes', function () {
+describe('Authentication Service', function () {
+	it('Creates an instance', function () {
 		let oktaConfig: CrdsOktaConfig = {
 			url: 'https://testurl.com',
 			clientId: 'nonsenseid',
