@@ -9,6 +9,12 @@ module.exports = function (config) {
         },
         singleRun: true,
         reporters: ["progress", "karma-typescript"],
-        browsers: ["ChromeHeadless"]
+        browsers: ['ChromeHeadlessNoSandbox'],
+        customLaunchers: {
+            ChromeHeadlessNoSandbox: {
+                base: 'ChromeHeadless',
+                flags: ['--no-sandbox']
+            }
+        },
     });
 };
