@@ -4,8 +4,8 @@ import 'jasmine';
 describe('my passing test', function () {
 	it('passes', function () {
 		let oktaConfig: CrdsOktaConfig = {
-			url: 'https://crossroads.oktapreview.com',
-			clientId: '0oahgpg7elMxVJedi0h7',
+			url: 'https://testurl.com',
+			clientId: 'nonsenseid',
 			issuer: 'default',
 
 			// TokenManager config
@@ -31,6 +31,6 @@ describe('my passing test', function () {
 
 		let authService = new CrdsAuthenticationService(authConfig);
 
-		expect(true).toBe(true);
+		expect(authService).toBeTruthy();
 	});
 });
