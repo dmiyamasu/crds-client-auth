@@ -26,6 +26,7 @@ CrdsAuthenticationProviders } from  '@crds_npm/crds-client-auth';
 let  oktaConfig:  CrdsOktaConfig  = {
 	clientId:  'CLIENT_ID',
 	issuer:  '{OKTA_URL}/oauth2/default',
+	redirectUri: 'REDIRECT_URI', //This one is a bit tricky. There are two parts. 1. This should be the fully qualified base url where your app is hosted. Maybe that's https://int.crossroads.net, https://media.crossroads.net, https://www.crossroads.net. 2. The url must be registered in the okta portal under the application redirectUri settings.
 	tokenManager: {
 		storage:  'cookie'
 	},
