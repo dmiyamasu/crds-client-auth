@@ -50,7 +50,7 @@
   },
   "dependencies": {
     "@okta/okta-auth-js": "^2.5.0",
-    "rxjs": "6.5.1"
+    "rxjs": "6.5.3"
   },
   "devDependencies": {
     "@types/jasmine": "^3.3.12",
